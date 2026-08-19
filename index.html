@@ -1,559 +1,778 @@
-Jasne — zrobię stronę w **białym, minimalistycznym stylu z niebieskimi napisami**, z treścią już dopasowaną do Krzysztofa, literatury, technologii i AI.
-
 ```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Krzysztof | O mnie</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #ffffff;
-            color: #1e293b;
-            line-height: 1.7;
-        }
-
-        /* ===== NAWIGACJA ===== */
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 75px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding: 0 8%;
-
-            background: rgba(255, 255, 255, 0.95);
-            border-bottom: 1px solid #e5e7eb;
-
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2563eb;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        nav a {
-            color: #1e40af;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #60a5fa;
-        }
-
-        /* ===== HERO ===== */
-
-        .hero {
-            min-height: 100vh;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            text-align: center;
-
-            padding: 120px 20px 80px;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    #eff6ff 0%,
-                    #ffffff 75%
-                );
-        }
-
-        .hero-content {
-            max-width: 850px;
-        }
-
-        .hello {
-            color: #2563eb;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            font-size: clamp(48px, 8vw, 82px);
-            color: #1d4ed8;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            max-width: 700px;
-            margin: auto;
-            font-size: 21px;
-            color: #475569;
-        }
-
-        .button {
-            display: inline-block;
-
-            margin-top: 30px;
-            padding: 14px 30px;
-
-            background: #2563eb;
-            color: white;
-
-            border-radius: 30px;
-
-            text-decoration: none;
-            font-weight: bold;
-
-            transition: 0.3s;
-        }
-
-        .button:hover {
-            background: #1d4ed8;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
-        }
-
-        /* ===== SEKCJE ===== */
-
-        section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 100px 8%;
-        }
-
-        section h2 {
-            font-size: 42px;
-            color: #1d4ed8;
-            margin-bottom: 25px;
-        }
-
-        .intro {
-            font-size: 19px;
-            color: #475569;
-            max-width: 850px;
-        }
-
-        /* ===== ZAINTERESOWANIA ===== */
-
-        .cards {
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(250px, 1fr));
-
-            gap: 25px;
-            margin-top: 45px;
-        }
-
-        .card {
-            padding: 32px;
-
-            background: #ffffff;
-
-            border: 1px solid #dbeafe;
-            border-radius: 18px;
-
-            box-shadow:
-                0 10px 30px rgba(30, 64, 175, 0.06);
-
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-7px);
-
-            border-color: #93c5fd;
-
-            box-shadow:
-                0 15px 35px rgba(30, 64, 175, 0.12);
-        }
-
-        .icon {
-            font-size: 38px;
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            color: #2563eb;
-            font-size: 23px;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            color: #64748b;
-        }
-
-        /* ===== LITERATURA ===== */
-
-        .quote {
-            margin-top: 35px;
-            padding: 30px;
-
-            background: #eff6ff;
-
-            border-left: 5px solid #2563eb;
-
-            border-radius: 10px;
-
-            color: #334155;
-            font-size: 20px;
-            font-style: italic;
-        }
-
-        /* ===== TECHNOLOGIA ===== */
-
-        .technology {
-            background: #f8fafc;
-        }
-
-        /* ===== KONTAKT ===== */
-
-        .contact {
-            text-align: center;
-        }
-
-        .contact p {
-            max-width: 650px;
-            margin: auto;
-
-            color: #64748b;
-            font-size: 19px;
-        }
-
-        /* ===== STOPKA ===== */
-
-        footer {
-            text-align: center;
-
-            padding: 35px;
-
-            background: #eff6ff;
-
-            color: #64748b;
-        }
-
-        footer strong {
-            color: #2563eb;
-        }
-
-        /* ===== TELEFON ===== */
-
-        @media (max-width: 650px) {
-
-            nav {
-                padding: 0 5%;
-            }
-
-            nav ul {
-                gap: 12px;
-                font-size: 14px;
-            }
-
-            section {
-                padding: 70px 6%;
-            }
-
-            section h2 {
-                font-size: 34px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>O mnie | Moja przestrzeń</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0d12;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    /* ===== NAWIGACJA ===== */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 20px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(11, 13, 18, 0.75);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #b58cff;
+    }
+
+    /* ===== HERO ===== */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 50px;
+      background:
+        radial-gradient(circle at 20% 20%, #30204f 0, transparent 35%),
+        radial-gradient(circle at 80% 70%, #123b4d 0, transparent 35%),
+        #0b0d12;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-bottom: 20px;
+      letter-spacing: -3px;
+    }
+
+    .hero h1 span {
+      color: #b58cff;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #c7c7c7;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      background: #b58cff;
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(181, 140, 255, 0.3);
+    }
+
+    /* ===== SEKCJE ===== */
+
+    section {
+      padding: 100px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+    }
+
+    .section-title span {
+      color: #b58cff;
+    }
+
+    /* ===== O MNIE ===== */
+
+    .about {
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about p {
+      color: #c5c5c5;
+      font-size: 1.15rem;
+      margin-bottom: 20px;
+    }
+
+    /* ===== PASJE ===== */
+
+    .interests {
+      background: #10131a;
+    }
+
+    .cards {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      padding: 35px 25px;
+      border: 1px solid #242936;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.025);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #b58cff;
+      background: rgba(181, 140, 255, 0.06);
+    }
+
+    .icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #aaa;
+    }
+
+    /* ===== SLIDER ===== */
+
+    .gallery {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 25px;
+      height: 550px;
+      background: #151820;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .slides {
+      display: flex;
+      height: 100%;
+      transition: transform 0.7s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75),
+        transparent 55%
+      );
+    }
+
+    .caption {
+      position: absolute;
+      z-index: 2;
+      bottom: 35px;
+      left: 40px;
+    }
+
+    .caption h3 {
+      font-size: 2rem;
+    }
+
+    .caption p {
+      color: #ddd;
+    }
+
+    .arrow {
+      position: absolute;
+      z-index: 5;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.55);
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .arrow:hover {
+      background: #b58cff;
+      color: #111;
+    }
+
+    .prev {
+      left: 20px;
+    }
+
+    .next {
+      right: 20px;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: #555;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .dot.active {
+      background: #b58cff;
+      transform: scale(1.3);
+    }
+
+    /* ===== TECHNOLOGIA ===== */
+
+    .technology {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .technology p {
+      color: #bbb;
+      font-size: 1.1rem;
+      margin-bottom: 35px;
+    }
+
+    .tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tag {
+      padding: 10px 18px;
+      border-radius: 30px;
+      border: 1px solid #343947;
+      color: #ddd;
+      background: #14171e;
+    }
+
+    /* ===== KONTAKT ===== */
+
+    .contact {
+      text-align: center;
+      background:
+        radial-gradient(circle at center, #241a39, transparent 55%),
+        #0b0d12;
+    }
+
+    .contact p {
+      color: #bbb;
+      margin-bottom: 25px;
+    }
+
+    /* ===== STOPKA ===== */
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      color: #777;
+      border-top: 1px solid #20242e;
+    }
+
+    /* ===== TELEFON ===== */
+
+    @media (max-width: 700px) {
+
+      nav {
+        padding: 15px 5%;
+      }
+
+      nav ul {
+        gap: 12px;
+        font-size: 0.85rem;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 75px 5%;
+      }
+
+      .slider {
+        height: 400px;
+      }
+
+      .caption {
+        left: 25px;
+        bottom: 25px;
+      }
+
+      .caption h3 {
+        font-size: 1.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
-    <!-- ===== MENU ===== -->
+  <!-- ===== MENU ===== -->
 
-    <nav>
+  <nav>
+    <div class="logo">MOJA PRZESTRZEŃ</div>
 
-        <div class="logo">
-            Krzysztof
-        </div>
+    <ul>
+      <li><a href="#o-mnie">O mnie</a></li>
+      <li><a href="#pasje">Pasje</a></li>
+      <li><a href="#fotografia">Fotografia</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
 
-        <ul>
-            <li>
-                <a href="#o-mnie">O mnie</a>
-            </li>
 
-            <li>
-                <a href="#zainteresowania">Zainteresowania</a>
-            </li>
+  <!-- ===== HERO ===== -->
 
-            <li>
-                <a href="#technologia">Technologia i AI</a>
-            </li>
+  <header class="hero">
 
-            <li>
-                <a href="#kontakt">Kontakt</a>
-            </li>
-        </ul>
+    <div class="hero-content">
 
-    </nav>
+      <h1>
+        Cześć, jestem <span>Ja.</span>
+      </h1>
 
+      <p>
+        Lubię odkrywać nowe miejsca, poznawać historie zapisane
+        na kartach książek, zatrzymywać chwile w fotografii
+        i sprawdzać, dokąd zaprowadzi nas technologia oraz sztuczna inteligencja.
+      </p>
 
-    <!-- ===== GŁÓWNY EKRAN ===== -->
+      <a href="#o-mnie" class="button">
+        Poznaj mnie ↓
+      </a>
 
-    <header class="hero">
+    </div>
 
-        <div class="hero-content">
+  </header>
 
-            <div class="hello">
-                Witaj na mojej stronie
-            </div>
 
-            <h1>
-                Cześć, jestem Krzysztof.
-            </h1>
+  <!-- ===== O MNIE ===== -->
 
-            <p>
-                Interesuję się literaturą, technologią oraz sztuczną
-                inteligencją. Lubię łączyć świat książek i ludzkich
-                idei z możliwościami, jakie daje współczesna technologia.
-            </p>
+  <section id="o-mnie">
 
-            <a href="#o-mnie" class="button">
-                Poznaj mnie
-            </a>
+    <h2 class="section-title">
+      Trochę <span>o mnie</span>
+    </h2>
 
-        </div>
+    <div class="about">
 
-    </header>
+      <p>
+        Jestem osobą ciekawą świata. Interesują mnie zarówno stare
+        historie i literatura, jak i najnowsze technologie.
+      </p>
 
+      <p>
+        Podróże pozwalają mi patrzeć na świat z innej perspektywy,
+        fotografia pomaga zatrzymywać najważniejsze momenty,
+        a technologia i sztuczna inteligencja pokazują mi,
+        jak szybko zmienia się rzeczywistość.
+      </p>
 
-    <!-- ===== O MNIE ===== -->
+      <p>
+        Ta strona jest moim małym miejscem w sieci —
+        przestrzenią, w której łączę swoje zainteresowania,
+        pomysły, zdjęcia i rzeczy, które mnie inspirują.
+      </p>
 
-    <section id="o-mnie">
+    </div>
 
-        <h2>O mnie</h2>
+  </section>
 
-        <p class="intro">
 
-            Mam na imię <strong>Krzysztof</strong>. Jestem osobą ciekawą
-            świata i lubię poznawać nowe idee, technologie oraz sposoby
-            patrzenia na rzeczywistość.
+  <!-- ===== PASJE ===== -->
 
-            Szczególnie interesuje mnie połączenie dwóch pozornie
-            różnych światów — <strong>literatury i technologii</strong>.
+  <section id="pasje" class="interests">
 
-            Z jednej strony fascynują mnie książki, język, wyobraźnia
-            oraz sposób, w jaki autorzy potrafią opowiadać o człowieku.
-            Z drugiej strony ciekawi mnie rozwój komputerów,
-            internetu i sztucznej inteligencji.
-        </p>
+    <h2 class="section-title">
+      To, co mnie <span>inspiruje</span>
+    </h2>
 
-        <div class="quote">
+    <div class="cards">
 
-            „Technologia daje nam nowe narzędzia,
-            ale to człowiek decyduje, jakie historie
-            za ich pomocą opowie.”
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== ZAINTERESOWANIA ===== -->
-
-    <section id="zainteresowania">
-
-        <h2>Moje zainteresowania</h2>
-
-        <div class="cards">
-
-
-            <div class="card">
-
-                <div class="icon">
-                    📚
-                </div>
-
-                <h3>
-                    Literatura
-                </h3>
-
-                <p>
-                    Literatura jest dla mnie sposobem poznawania
-                    innych ludzi, epok i sposobów myślenia.
-                    Lubię książki, które skłaniają do refleksji
-                    i pozostają w pamięci długo po przeczytaniu.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    💻
-                </div>
-
-                <h3>
-                    Technologia
-                </h3>
-
-                <p>
-                    Fascynuje mnie rozwój technologii i to,
-                    jak zmienia ona codzienne życie.
-                    Interesują mnie nowe rozwiązania,
-                    komputery, internet oraz cyfrowy świat.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="icon">
-                    🤖
-                </div>
-
-                <h3>
-                    Sztuczna inteligencja
-                </h3>
-
-                <p>
-                    AI szczególnie mnie ciekawi, ponieważ znajduje się
-                    na styku technologii, języka i ludzkiej kreatywności.
-                    Obserwuję jej rozwój i możliwości wykorzystania
-                    w nauce, pracy oraz codziennym życiu.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- ===== TECHNOLOGIA ===== -->
-
-    <section id="technologia" class="technology">
-
-        <h2>
-            Technologia i AI
-        </h2>
-
-        <p class="intro">
-
-            Sztuczna inteligencja jest jednym z najbardziej interesujących
-            kierunków rozwoju współczesnej technologii.
-
-            Szczególnie interesuje mnie to, w jaki sposób AI może pomagać
-            człowiekowi w zdobywaniu wiedzy, analizowaniu informacji,
-            tworzeniu tekstów oraz rozwijaniu kreatywnych pomysłów.
-
-            Jednocześnie uważam, że rozwój technologii powinien iść
-            w parze z odpowiedzialnością i refleksją nad tym,
-            jak wpływa ona na człowieka i społeczeństwo.
-
-        </p>
-
-    </section>
-
-
-    <!-- ===== KONTAKT ===== -->
-
-    <section id="kontakt" class="contact">
-
-        <h2>
-            Kontakt
-        </h2>
-
+      <div class="card">
+        <div class="icon">📖</div>
+        <h3>Literatura</h3>
         <p>
-            Jeśli chcesz porozmawiać o literaturze, nowych technologiach,
-            sztucznej inteligencji albo po prostu wymienić się ciekawymi
-            pomysłami — zapraszam do kontaktu.
+          Książki, historie, bohaterowie i światy,
+          które można odkrywać bez wychodzenia z domu.
         </p>
+      </div>
 
-        <a
-            href="mailto:twoj@email.pl"
-            class="button"
-        >
-            Napisz do mnie
-        </a>
+      <div class="card">
+        <div class="icon">✈️</div>
+        <h3>Podróże</h3>
+        <p>
+          Nowe miejsca, ludzie, kultury i historie,
+          które najlepiej poznaje się osobiście.
+        </p>
+      </div>
 
-    </section>
+      <div class="card">
+        <div class="icon">📷</div>
+        <h3>Fotografia</h3>
+        <p>
+          Zatrzymywanie chwil i patrzenie na codzienność
+          trochę inaczej niż wszyscy.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💻</div>
+        <h3>Technologia</h3>
+        <p>
+          Nowe rozwiązania, komputery, internet
+          i wszystko, co zmienia sposób, w jaki żyjemy.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🤖</div>
+        <h3>Sztuczna inteligencja</h3>
+        <p>
+          Fascynuje mnie możliwość współpracy człowieka
+          z inteligentnymi systemami i to, co możemy razem stworzyć.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
 
 
-    <!-- ===== STOPKA ===== -->
+  <!-- ===== GALERIA ===== -->
 
-    <footer>
+  <section id="fotografia">
 
-        © 2026 <strong>Krzysztof</strong> —
-        strona osobista
+    <h2 class="section-title">
+      Moje <span>spojrzenie</span>
+    </h2>
 
-    </footer>
+    <div class="gallery">
 
+      <div class="slider">
+
+        <div class="slides" id="slides">
+
+          <div class="slide">
+            <img
+              src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=85"
+              alt="Góry podczas zachodu słońca"
+            >
+
+            <div class="caption">
+              <h3>Podróże</h3>
+              <p>Świat jest zbyt duży, żeby stać w miejscu.</p>
+            </div>
+          </div>
+
+
+          <div class="slide">
+            <img
+              src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=85"
+              alt="Biblioteka z książkami"
+            >
+
+            <div class="caption">
+              <h3>Literatura</h3>
+              <p>Każda książka otwiera kolejne drzwi.</p>
+            </div>
+          </div>
+
+
+          <div class="slide">
+            <img
+              src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=1600&q=85"
+              alt="Aparat fotograficzny"
+            >
+
+            <div class="caption">
+              <h3>Fotografia</h3>
+              <p>Niektóre chwile warto zatrzymać na zawsze.</p>
+            </div>
+          </div>
+
+
+          <div class="slide">
+            <img
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=85"
+              alt="Technologia i elektronika"
+            >
+
+            <div class="caption">
+              <h3>Technologia</h3>
+              <p>Przyszłość zaczyna się dziś.</p>
+            </div>
+          </div>
+
+
+          <div class="slide">
+            <img
+              src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=85"
+              alt="Sztuczna inteligencja"
+            >
+
+            <div class="caption">
+              <h3>Sztuczna inteligencja</h3>
+              <p>Nowe narzędzia. Nowe możliwości. Nowe pytania.</p>
+            </div>
+          </div>
+
+        </div>
+
+
+        <button class="arrow prev" onclick="changeSlide(-1)">
+          ‹
+        </button>
+
+        <button class="arrow next" onclick="changeSlide(1)">
+          ›
+        </button>
+
+      </div>
+
+
+      <div class="dots" id="dots"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===== TECHNOLOGIA ===== -->
+
+  <section>
+
+    <h2 class="section-title">
+      Technologie, które mnie <span>ciekawią</span>
+    </h2>
+
+    <div class="technology">
+
+      <p>
+        Nie traktuję technologii tylko jako narzędzia.
+        Ciekawi mnie sposób, w jaki wpływa na ludzi,
+        kulturę, pracę i przyszłość.
+      </p>
+
+      <div class="tags">
+
+        <span class="tag">🤖 AI</span>
+        <span class="tag">💻 Web</span>
+        <span class="tag">🧠 Machine Learning</span>
+        <span class="tag">🌐 Internet</span>
+        <span class="tag">📱 Technologie</span>
+        <span class="tag">📸 Fotografia</span>
+        <span class="tag">🚀 Przyszłość</span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===== KONTAKT ===== -->
+
+  <section id="kontakt" class="contact">
+
+    <h2 class="section-title">
+      Zostańmy w <span>kontakcie</span>
+    </h2>
+
+    <p>
+      Jeśli chcesz się ze mną skontaktować, napisz.
+    </p>
+
+    <!-- ZMIEŃ ADRES E-MAIL NA SWÓJ -->
+    <a
+      href="mailto:twoj@email.pl"
+      class="button"
+    >
+      Napisz do mnie
+    </a>
+
+  </section>
+
+
+  <!-- ===== STOPKA ===== -->
+
+  <footer>
+
+    © 2026 Moja przestrzeń w sieci · Stworzone z pasją
+
+  </footer>
+
+
+  <!-- ===== SLIDER JAVASCRIPT ===== -->
+
+  <script>
+
+    let currentSlide = 0;
+
+    const slides = document.getElementById("slides");
+    const slideItems = document.querySelectorAll(".slide");
+    const dotsContainer = document.getElementById("dots");
+
+    /*
+      Tworzymy kropki pod sliderem.
+    */
+
+    slideItems.forEach((_, index) => {
+
+      const dot = document.createElement("button");
+
+      dot.classList.add("dot");
+
+      if (index === 0) {
+        dot.classList.add("active");
+      }
+
+      dot.addEventListener("click", () => {
+        currentSlide = index;
+        updateSlider();
+      });
+
+      dotsContainer.appendChild(dot);
+
+    });
+
+
+    function updateSlider() {
+
+      slides.style.transform =
+        `translateX(-${currentSlide * 100}%)`;
+
+      document
+        .querySelectorAll(".dot")
+        .forEach((dot, index) => {
+
+          dot.classList.toggle(
+            "active",
+            index === currentSlide
+          );
+
+        });
+
+    }
+
+
+    function changeSlide(direction) {
+
+      currentSlide += direction;
+
+      if (currentSlide >= slideItems.length) {
+        currentSlide = 0;
+      }
+
+      if (currentSlide < 0) {
+        currentSlide = slideItems.length - 1;
+      }
+
+      updateSlider();
+
+    }
+
+
+    /*
+      Automatyczne przewijanie co 5 sekund.
+    */
+
+    setInterval(() => {
+
+      changeSlide(1);
+
+    }, 5000);
+
+  </script>
 
 </body>
 </html>
 ```
-
-### Jak będzie wyglądała
-
-Układ będzie mniej więcej taki:
-
-**Krzysztof**                      O mnie · Zainteresowania · Technologia i AI · Kontakt
-
----
-
-### **Cześć, jestem Krzysztof.**
-
-*Interesuję się literaturą, technologią oraz sztuczną inteligencją.
-Lubię łączyć świat książek i ludzkich idei z możliwościami współczesnej technologii.*
-
-**[ Poznaj mnie ]**
-
----
-
-### **O mnie**
-
-Dłuższy, elegancki opis Ciebie, a pod nim wyróżniony cytat.
-
-### **Moje zainteresowania**
-
-📚 **Literatura**  💻 **Technologia**  🤖 **Sztuczna inteligencja**
-
-Trzy jasne kafelki z delikatnym niebieskim obramowaniem.
-
-### **Technologia i AI**
-
-Większa sekcja z Twoimi przemyśleniami na temat sztucznej inteligencji.
-
-### **Kontakt**
-
-**[ Napisz do mnie ]**
-
----
-
-Całość będzie **biała, czysta i elegancka**, z niebieskim jako głównym kolorem. Nie będzie wyglądała jak typowy „szablon dla programisty”, tylko bardziej jak **osobista strona człowieka zainteresowanego kulturą, książkami i nowoczesną technologią**.
