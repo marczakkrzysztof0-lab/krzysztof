@@ -1,778 +1,1368 @@
-```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>O mnie | Moja strona</title>
+<title>Krzysztof | Moja przestrzeń</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+html {
+    scroll-behavior: smooth;
+}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0b0d12;
-      color: #f5f5f5;
-      line-height: 1.6;
-    }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #090b10;
+    color: #f5f5f5;
+    line-height: 1.6;
+}
 
-    /* ===== NAWIGACJA ===== */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(9,11,16,.82);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #b58cff;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 20px 70px;
+
+    background:
+        radial-gradient(circle at 20% 20%, #30204f 0, transparent 35%),
+        radial-gradient(circle at 80% 70%, #123b4d 0, transparent 35%),
+        #090b10;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #b58cff;
+}
+
+.hero p {
+    color: #c7c7c7;
+    font-size: 1.2rem;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 13px 27px;
+    border-radius: 50px;
+    background: #b58cff;
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(181,140,255,.3);
+}
+
+section {
+    padding: 100px 7%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 50px;
+}
+
+.section-title span {
+    color: #b58cff;
+}
+
+.about {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+.about p {
+    color: #bbb;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   PASJE
+========================= */
+
+.interests {
+    background: #10131a;
+}
+
+.cards {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 25px;
+}
+
+.card {
+    padding: 30px;
+    background: #14171e;
+    border: 1px solid #282d39;
+    border-radius: 20px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: #b58cff;
+}
+
+.icon {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #aaa;
+}
+
+/* =========================
+   SLIDER
+========================= */
+
+.slider {
+    max-width: 1100px;
+    height: 550px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 25px;
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    height: 100%;
+    transition: transform .7s ease;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,rgba(0,0,0,.8),transparent 60%);
+}
+
+.caption {
+    position: absolute;
+    z-index: 5;
+    left: 40px;
+    bottom: 35px;
+}
+
+.caption h3 {
+    font-size: 2rem;
+}
+
+.caption p {
+    color: #ddd;
+}
+
+.arrow {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,.55);
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.arrow:hover {
+    background: #b58cff;
+    color: #111;
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+/* =========================
+   PODRÓŻE / LITERATURA
+========================= */
+
+.dark-section {
+    background: #10131a;
+}
+
+.content-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 30px;
+}
+
+.post {
+    background: #151820;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #292e3a;
+    transition: .3s;
+}
+
+.post:hover {
+    transform: translateY(-6px);
+    border-color: #b58cff;
+}
+
+.post img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.post-content {
+    padding: 25px;
+}
+
+.post-content h3 {
+    margin-bottom: 8px;
+}
+
+.post-date {
+    color: #b58cff;
+    font-size: .85rem;
+    margin-bottom: 15px;
+}
+
+.post-content p {
+    color: #aaa;
+}
+
+.read-more {
+    margin-top: 18px;
+    display: inline-block;
+    color: #b58cff;
+    cursor: pointer;
+}
+
+/* =========================
+   FORMULARZE
+========================= */
+
+.admin {
+    background: #080a0f;
+}
+
+.forms {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.form-box {
+    background: #14171e;
+    border: 1px solid #292e39;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.form-box h3 {
+    margin-bottom: 20px;
+}
+
+input,
+textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid #333946;
+    background: #0d1016;
+    color: white;
+    font-family: inherit;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #b58cff;
+}
+
+.file-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #aaa;
+}
+
+.delete-btn {
+    margin-top: 15px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: #49252c;
+    color: white;
+}
+
+/* =========================
+   KONTAKT
+========================= */
+
+.contact {
+    text-align: center;
+    background:
+        radial-gradient(circle at center,#241a39,transparent 55%),
+        #090b10;
+}
+
+.contact p {
+    color: #aaa;
+}
+
+/* =========================
+   STOPKA
+========================= */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+    border-top: 1px solid #20242d;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0,0,0,.85);
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.modal-content {
+    max-width: 850px;
+    margin: 50px auto;
+    background: #151820;
+    border-radius: 20px;
+    padding: 35px;
+    position: relative;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px) {
 
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 20px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(11, 13, 18, 0.75);
-      backdrop-filter: blur(12px);
-    }
-
-    .logo {
-      font-size: 1.4rem;
-      font-weight: bold;
-      letter-spacing: 2px;
+        padding: 15px 4%;
     }
 
     nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
+        gap: 10px;
+        font-size: .78rem;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
+    .logo {
+        font-size: .9rem;
     }
-
-    nav a:hover {
-      color: #b58cff;
-    }
-
-    /* ===== HERO ===== */
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 20px 50px;
-      background:
-        radial-gradient(circle at 20% 20%, #30204f 0, transparent 35%),
-        radial-gradient(circle at 80% 70%, #123b4d 0, transparent 35%),
-        #0b0d12;
-    }
-
-    .hero-content {
-      max-width: 850px;
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
-      margin-bottom: 20px;
-      letter-spacing: -3px;
-    }
-
-    .hero h1 span {
-      color: #b58cff;
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      color: #c7c7c7;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 35px;
-      padding: 14px 28px;
-      border-radius: 50px;
-      background: #b58cff;
-      color: #111;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(181, 140, 255, 0.3);
-    }
-
-    /* ===== SEKCJE ===== */
 
     section {
-      padding: 100px 7%;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 60px;
-    }
-
-    .section-title span {
-      color: #b58cff;
-    }
-
-    /* ===== O MNIE ===== */
-
-    .about {
-      max-width: 1000px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .about p {
-      color: #c5c5c5;
-      font-size: 1.15rem;
-      margin-bottom: 20px;
-    }
-
-    /* ===== PASJE ===== */
-
-    .interests {
-      background: #10131a;
-    }
-
-    .cards {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-    }
-
-    .card {
-      padding: 35px 25px;
-      border: 1px solid #242936;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.025);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: #b58cff;
-      background: rgba(181, 140, 255, 0.06);
-    }
-
-    .icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-
-    .card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      color: #aaa;
-    }
-
-    /* ===== SLIDER ===== */
-
-    .gallery {
-      max-width: 1100px;
-      margin: auto;
+        padding: 75px 5%;
     }
 
     .slider {
-      position: relative;
-      overflow: hidden;
-      border-radius: 25px;
-      height: 550px;
-      background: #151820;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-    }
-
-    .slides {
-      display: flex;
-      height: 100%;
-      transition: transform 0.7s ease-in-out;
-    }
-
-    .slide {
-      min-width: 100%;
-      height: 100%;
-      position: relative;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .slide::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.75),
-        transparent 55%
-      );
+        height: 400px;
     }
 
     .caption {
-      position: absolute;
-      z-index: 2;
-      bottom: 35px;
-      left: 40px;
+        left: 25px;
+        bottom: 25px;
     }
 
     .caption h3 {
-      font-size: 2rem;
-    }
-
-    .caption p {
-      color: #ddd;
-    }
-
-    .arrow {
-      position: absolute;
-      z-index: 5;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 50px;
-      height: 50px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.55);
-      color: white;
-      font-size: 1.8rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .arrow:hover {
-      background: #b58cff;
-      color: #111;
-    }
-
-    .prev {
-      left: 20px;
-    }
-
-    .next {
-      right: 20px;
-    }
-
-    .dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: none;
-      background: #555;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .dot.active {
-      background: #b58cff;
-      transform: scale(1.3);
-    }
-
-    /* ===== TECHNOLOGIA ===== */
-
-    .technology {
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .technology p {
-      color: #bbb;
-      font-size: 1.1rem;
-      margin-bottom: 35px;
-    }
-
-    .tags {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .tag {
-      padding: 10px 18px;
-      border-radius: 30px;
-      border: 1px solid #343947;
-      color: #ddd;
-      background: #14171e;
-    }
-
-    /* ===== KONTAKT ===== */
-
-    .contact {
-      text-align: center;
-      background:
-        radial-gradient(circle at center, #241a39, transparent 55%),
-        #0b0d12;
-    }
-
-    .contact p {
-      color: #bbb;
-      margin-bottom: 25px;
-    }
-
-    /* ===== STOPKA ===== */
-
-    footer {
-      padding: 30px;
-      text-align: center;
-      color: #777;
-      border-top: 1px solid #20242e;
-    }
-
-    /* ===== TELEFON ===== */
-
-    @media (max-width: 700px) {
-
-      nav {
-        padding: 15px 5%;
-      }
-
-      nav ul {
-        gap: 12px;
-        font-size: 0.85rem;
-      }
-
-      .logo {
-        font-size: 1rem;
-      }
-
-      section {
-        padding: 75px 5%;
-      }
-
-      .slider {
-        height: 400px;
-      }
-
-      .caption {
-        left: 25px;
-        bottom: 25px;
-      }
-
-      .caption h3 {
         font-size: 1.5rem;
-      }
-
-      .hero p {
-        font-size: 1rem;
-      }
     }
-  </style>
+
+    .forms {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ===== MENU ===== -->
+<!-- =========================
+     MENU
+========================= -->
 
-  <nav>
-    <div class="logo">MOJA PRZESTRZEŃ</div>
+<nav>
+
+    <div class="logo">
+        KRZYSZTOF
+    </div>
 
     <ul>
-      <li><a href="#o-mnie">O mnie</a></li>
-      <li><a href="#pasje">Pasje</a></li>
-      <li><a href="#fotografia">Fotografia</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#o-mnie">O mnie</a></li>
+        <li><a href="#literatura">Literatura</a></li>
+        <li><a href="#podroze">Podróże</a></li>
+        <li><a href="#fotografia">Fotografia</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
     </ul>
-  </nav>
+
+</nav>
 
 
-  <!-- ===== HERO ===== -->
+<!-- =========================
+     HERO
+========================= -->
 
-  <header class="hero">
+<header class="hero">
 
     <div class="hero-content">
 
-      <h1>
-        Cześć, jestem <span> Krzysztof.</span>
-      </h1>
+        <h1>
+            Cześć, jestem <span>Krzysztof.</span>
+        </h1>
 
-      <p>
-        Lubię odkrywać nowe miejsca, poznawać historie zapisane
-        na kartach książek, zatrzymywać chwile w fotografii
-        i sprawdzać, dokąd zaprowadzi nas technologia oraz sztuczna inteligencja.
-      </p>
+        <p>
+            Literatura. Podróże. Fotografia.
+            Technologia. Sztuczna inteligencja.
+            I wszystko to, co sprawia, że świat jest ciekawszy.
+        </p>
 
-      <a href="#o-mnie" class="button">
-        Poznaj mnie ↓
-      </a>
+        <a href="#o-mnie" class="button">
+            Poznaj mnie ↓
+        </a>
 
     </div>
 
-  </header>
+</header>
 
 
-  <!-- ===== O MNIE ===== -->
+<!-- =========================
+     O MNIE
+========================= -->
 
-  <section id="o-mnie">
+<section id="o-mnie">
 
     <h2 class="section-title">
-      Trochę <span>o mnie</span>
+        Trochę <span>o mnie</span>
     </h2>
 
     <div class="about">
 
-      <p>
-        Jestem osobą ciekawą świata. Interesują mnie zarówno stare
-        historie i literatura, jak i najnowsze technologie.
-      </p>
+        <p>
+            Jestem człowiekiem ciekawym świata.
+            Lubię czytać, podróżować, fotografować
+            i poznawać nowe technologie.
+        </p>
 
-      <p>
-        Podróże pozwalają mi patrzeć na świat z innej perspektywy,
-        fotografia pomaga zatrzymywać najważniejsze momenty,
-        a technologia i sztuczna inteligencja pokazują mi,
-        jak szybko zmienia się rzeczywistość.
-      </p>
+        <p>
+            Szczególnie interesuje mnie sztuczna inteligencja
+            i to, jak może zmienić sposób, w jaki tworzymy,
+            pracujemy i komunikujemy się.
+        </p>
 
-      <p>
-        Ta strona jest moim małym miejscem w sieci —
-        przestrzenią, w której łączę swoje zainteresowania,
-        pomysły, zdjęcia i rzeczy, które mnie inspirują.
-      </p>
+        <p>
+            Ta strona jest moim prywatnym miejscem w internecie.
+            Będę tutaj zapisywał historie, publikował zdjęcia
+            i dzielił się tym, co mnie inspiruje.
+        </p>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- ===== PASJE ===== -->
+<!-- =========================
+     PASJE
+========================= -->
 
-  <section id="pasje" class="interests">
+<section class="interests">
 
     <h2 class="section-title">
-      To, co mnie <span>inspiruje</span>
+        Moje <span>pasje</span>
     </h2>
 
     <div class="cards">
 
-      <div class="card">
-        <div class="icon">📖</div>
-        <h3>Literatura</h3>
-        <p>
-          Książki, historie, bohaterowie i światy,
-          które można odkrywać bez wychodzenia z domu.
-        </p>
-      </div>
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>Literatura</h3>
+            <p>
+                Opowiadania, książki, historie
+                i własne teksty.
+            </p>
+        </div>
 
-      <div class="card">
-        <div class="icon">✈️</div>
-        <h3>Podróże</h3>
-        <p>
-          Nowe miejsca, ludzie, kultury i historie,
-          które najlepiej poznaje się osobiście.
-        </p>
-      </div>
+        <div class="card">
+            <div class="icon">✈️</div>
+            <h3>Podróże</h3>
+            <p>
+                Miejsca, które odwiedziłem,
+                zdjęcia i wspomnienia.
+            </p>
+        </div>
 
-      <div class="card">
-        <div class="icon">📷</div>
-        <h3>Fotografia</h3>
-        <p>
-          Zatrzymywanie chwil i patrzenie na codzienność
-          trochę inaczej niż wszyscy.
-        </p>
-      </div>
+        <div class="card">
+            <div class="icon">📷</div>
+            <h3>Fotografia</h3>
+            <p>
+                Kadry, które udało mi się
+                zatrzymać na dłużej.
+            </p>
+        </div>
 
-      <div class="card">
-        <div class="icon">💻</div>
-        <h3>Technologia</h3>
-        <p>
-          Nowe rozwiązania, komputery, internet
-          i wszystko, co zmienia sposób, w jaki żyjemy.
-        </p>
-      </div>
+        <div class="card">
+            <div class="icon">💻</div>
+            <h3>Technologia</h3>
+            <p>
+                Nowe technologie, internet,
+                komputery i przyszłość.
+            </p>
+        </div>
 
-      <div class="card">
-        <div class="icon">🤖</div>
-        <h3>Sztuczna inteligencja</h3>
-        <p>
-          Fascynuje mnie możliwość współpracy człowieka
-          z inteligentnymi systemami i to, co możemy razem stworzyć.
-        </p>
-      </div>
+        <div class="card">
+            <div class="icon">🤖</div>
+            <h3>AI</h3>
+            <p>
+                Sztuczna inteligencja
+                i możliwości, które otwiera.
+            </p>
+        </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- ===== GALERIA ===== -->
+<!-- =========================
+     SLIDER
+========================= -->
 
-  <section id="fotografia">
+<section id="fotografia">
 
     <h2 class="section-title">
-      Moje <span>spojrzenie</span>
+        Świat przez <span>mój obiektyw</span>
     </h2>
 
-    <div class="gallery">
-
-      <div class="slider">
+    <div class="slider">
 
         <div class="slides" id="slides">
 
-          <div class="slide">
-            <img
-              src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=85"
-              alt="Góry podczas zachodu słońca"
-            >
-
-            <div class="caption">
-              <h3>Podróże</h3>
-              <p>Świat jest zbyt duży, żeby stać w miejscu.</p>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=85">
+                <div class="caption">
+                    <h3>Podróże</h3>
+                    <p>Odkrywanie nowych miejsc.</p>
+                </div>
             </div>
-          </div>
 
-
-          <div class="slide">
-            <img
-              src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=85"
-              alt="Biblioteka z książkami"
-            >
-
-            <div class="caption">
-              <h3>Literatura</h3>
-              <p>Każda książka otwiera kolejne drzwi.</p>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=85">
+                <div class="caption">
+                    <h3>Literatura</h3>
+                    <p>Światy ukryte pomiędzy stronami.</p>
+                </div>
             </div>
-          </div>
 
-
-          <div class="slide">
-            <img
-              src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=1600&q=85"
-              alt="Aparat fotograficzny"
-            >
-
-            <div class="caption">
-              <h3>Fotografia</h3>
-              <p>Niektóre chwile warto zatrzymać na zawsze.</p>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=1600&q=85">
+                <div class="caption">
+                    <h3>Fotografia</h3>
+                    <p>Chwile zatrzymane w kadrze.</p>
+                </div>
             </div>
-          </div>
 
-
-          <div class="slide">
-            <img
-              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=85"
-              alt="Technologia i elektronika"
-            >
-
-            <div class="caption">
-              <h3>Technologia</h3>
-              <p>Przyszłość zaczyna się dziś.</p>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=85">
+                <div class="caption">
+                    <h3>Technologia</h3>
+                    <p>Przyszłość dzieje się teraz.</p>
+                </div>
             </div>
-          </div>
+
+        </div>
+
+        <button class="arrow prev" onclick="changeSlide(-1)">‹</button>
+        <button class="arrow next" onclick="changeSlide(1)">›</button>
+
+    </div>
+
+</section>
 
 
-          <div class="slide">
-            <img
-              src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=85"
-              alt="Sztuczna inteligencja"
-            >
+<!-- =========================
+     LITERATURA
+========================= -->
 
-            <div class="caption">
-              <h3>Sztuczna inteligencja</h3>
-              <p>Nowe narzędzia. Nowe możliwości. Nowe pytania.</p>
-            </div>
-          </div>
+<section id="literatura" class="dark-section">
+
+    <h2 class="section-title">
+        Moja <span>literatura</span>
+    </h2>
+
+    <div
+        id="literatureContainer"
+        class="content-grid">
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PODRÓŻE
+========================= -->
+
+<section id="podroze">
+
+    <h2 class="section-title">
+        Moje <span>podróże</span>
+    </h2>
+
+    <div
+        id="travelContainer"
+        class="content-grid">
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DODAWANIE TREŚCI
+========================= -->
+
+<section class="admin">
+
+    <h2 class="section-title">
+        Dodaj <span>nowy wpis</span>
+    </h2>
+
+    <div class="forms">
+
+        <!-- LITERATURA -->
+
+        <div class="form-box">
+
+            <h3>📚 Dodaj opowiadanie</h3>
+
+            <input
+                id="storyTitle"
+                type="text"
+                placeholder="Tytuł opowiadania">
+
+            <input
+                id="storyDate"
+                type="date">
+
+            <input
+                id="storyImage"
+                type="url"
+                placeholder="Link do zdjęcia">
+
+            <textarea
+                id="storyText"
+                placeholder="Napisz swoje opowiadanie..."></textarea>
+
+            <button
+                class="button"
+                onclick="addStory()">
+                Dodaj opowiadanie
+            </button>
 
         </div>
 
 
-        <button class="arrow prev" onclick="changeSlide(-1)">
-          ‹
-        </button>
+        <!-- PODRÓŻE -->
 
-        <button class="arrow next" onclick="changeSlide(1)">
-          ›
-        </button>
+        <div class="form-box">
 
-      </div>
+            <h3>✈️ Dodaj podróż</h3>
 
+            <input
+                id="travelPlace"
+                type="text"
+                placeholder="Miejsce podróży">
 
-      <div class="dots" id="dots"></div>
+            <input
+                id="travelDate"
+                type="date">
 
-    </div>
+            <input
+                id="travelImage"
+                type="url"
+                placeholder="Link do zdjęcia">
 
-  </section>
+            <input
+                id="travelPhotoTitle"
+                type="text"
+                placeholder="Tytuł zdjęcia">
 
+            <textarea
+                id="travelDescription"
+                placeholder="Opis zdjęcia / podróży"></textarea>
 
-  <!-- ===== TECHNOLOGIA ===== -->
+            <button
+                class="button"
+                onclick="addTravel()">
+                Dodaj podróż
+            </button>
 
-  <section>
-
-    <h2 class="section-title">
-      Technologie, które mnie <span>ciekawią</span>
-    </h2>
-
-    <div class="technology">
-
-      <p>
-        Nie traktuję technologii tylko jako narzędzia.
-        Ciekawi mnie sposób, w jaki wpływa na ludzi,
-        kulturę, pracę i przyszłość.
-      </p>
-
-      <div class="tags">
-
-        <span class="tag">🤖 AI</span>
-        <span class="tag">💻 Web</span>
-        <span class="tag">🧠 Machine Learning</span>
-        <span class="tag">🌐 Internet</span>
-        <span class="tag">📱 Technologie</span>
-        <span class="tag">📸 Fotografia</span>
-        <span class="tag">🚀 Przyszłość</span>
-
-      </div>
+        </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- ===== KONTAKT ===== -->
+<!-- =========================
+     KONTAKT
+========================= -->
 
-  <section id="kontakt" class="contact">
+<section id="kontakt" class="contact">
 
     <h2 class="section-title">
-      Zostańmy w <span>kontakcie</span>
+        Zostańmy w <span>kontakcie</span>
     </h2>
 
     <p>
-      Jeśli chcesz się ze mną skontaktować, napisz.
+        Jeśli chcesz się ze mną skontaktować, napisz.
     </p>
 
-    <!-- ZMIEŃ ADRES E-MAIL NA SWÓJ -->
     <a
-      href="mailto:twoj@email.pl"
-      class="button"
-    >
-      Napisz do mnie
+        class="button"
+        href="mailto:twoj@email.pl">
+        Napisz do mnie
     </a>
 
-  </section>
+</section>
 
 
-  <!-- ===== STOPKA ===== -->
+<footer>
 
-  <footer>
+    © 2026 Krzysztof · Moja przestrzeń w sieci
 
-    © 2026 Moja przestrzeń w sieci · Stworzone z pasją
-
-  </footer>
+</footer>
 
 
-  <!-- ===== SLIDER JAVASCRIPT ===== -->
+<!-- =========================
+     MODAL
+========================= -->
 
-  <script>
+<div id="modal" class="modal">
 
-    let currentSlide = 0;
+    <div class="modal-content">
 
-    const slides = document.getElementById("slides");
-    const slideItems = document.querySelectorAll(".slide");
-    const dotsContainer = document.getElementById("dots");
+        <span
+            class="close"
+            onclick="closeModal()">
+            ×
+        </span>
 
-    /*
-      Tworzymy kropki pod sliderem.
-    */
+        <div id="modalContent"></div>
 
-    slideItems.forEach((_, index) => {
+    </div>
 
-      const dot = document.createElement("button");
+</div>
 
-      dot.classList.add("dot");
 
-      if (index === 0) {
-        dot.classList.add("active");
-      }
+<script>
 
-      dot.addEventListener("click", () => {
-        currentSlide = index;
-        updateSlider();
-      });
+/* =========================================
+   SLIDER
+========================================= */
 
-      dotsContainer.appendChild(dot);
+let currentSlide = 0;
+
+const slides =
+    document.getElementById("slides");
+
+const slideItems =
+    document.querySelectorAll(".slide");
+
+function updateSlider() {
+
+    slides.style.transform =
+        `translateX(-${currentSlide * 100}%)`;
+
+}
+
+function changeSlide(direction) {
+
+    currentSlide += direction;
+
+    if (currentSlide >= slideItems.length) {
+        currentSlide = 0;
+    }
+
+    if (currentSlide < 0) {
+        currentSlide = slideItems.length - 1;
+    }
+
+    updateSlider();
+
+}
+
+setInterval(() => {
+    changeSlide(1);
+}, 5000);
+
+
+/* =========================================
+   LITERATURA
+========================================= */
+
+let stories =
+    JSON.parse(localStorage.getItem("stories")) || [];
+
+
+function addStory() {
+
+    const title =
+        document.getElementById("storyTitle").value;
+
+    const date =
+        document.getElementById("storyDate").value;
+
+    const image =
+        document.getElementById("storyImage").value;
+
+    const text =
+        document.getElementById("storyText").value;
+
+    if (!title || !text) {
+
+        alert("Wpisz przynajmniej tytuł i treść opowiadania.");
+
+        return;
+    }
+
+    const story = {
+
+        id: Date.now(),
+
+        title: title,
+
+        date: date || "Bez daty",
+
+        image:
+            image ||
+            "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80",
+
+        text: text
+
+    };
+
+    stories.push(story);
+
+    localStorage.setItem(
+        "stories",
+        JSON.stringify(stories)
+    );
+
+    document.getElementById("storyTitle").value = "";
+    document.getElementById("storyDate").value = "";
+    document.getElementById("storyImage").value = "";
+    document.getElementById("storyText").value = "";
+
+    displayStories();
+
+    alert("Opowiadanie zostało dodane.");
+
+}
+
+
+/* =========================================
+   WYŚWIETLANIE OPOWIADAŃ
+========================================= */
+
+function displayStories() {
+
+    const container =
+        document.getElementById("literatureContainer");
+
+    container.innerHTML = "";
+
+    if (stories.length === 0) {
+
+        container.innerHTML = `
+            <div class="post">
+                <div class="post-content">
+                    <h3>Twoje pierwsze opowiadanie</h3>
+                    <p>
+                        Dodaj je za pomocą formularza
+                        znajdującego się niżej.
+                    </p>
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+    stories.forEach(story => {
+
+        const article =
+            document.createElement("article");
+
+        article.className = "post";
+
+        article.innerHTML = `
+
+            <img
+                src="${escapeHTML(story.image)}"
+                alt="${escapeHTML(story.title)}">
+
+            <div class="post-content">
+
+                <div class="post-date">
+                    ${escapeHTML(story.date)}
+                </div>
+
+                <h3>
+                    ${escapeHTML(story.title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        story.text.substring(0, 150)
+                    )}...
+                </p>
+
+                <span
+                    class="read-more"
+                    onclick="openStory(${story.id})">
+                    Czytaj całe →
+                </span>
+
+                <br>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteStory(${story.id})">
+                    Usuń
+                </button>
+
+            </div>
+        `;
+
+        container.appendChild(article);
 
     });
 
+}
 
-    function updateSlider() {
 
-      slides.style.transform =
-        `translateX(-${currentSlide * 100}%)`;
+function openStory(id) {
 
-      document
-        .querySelectorAll(".dot")
-        .forEach((dot, index) => {
+    const story =
+        stories.find(item => item.id === id);
 
-          dot.classList.toggle(
-            "active",
-            index === currentSlide
-          );
+    if (!story) return;
 
-        });
+    document.getElementById("modalContent").innerHTML = `
 
+        <h2>${escapeHTML(story.title)}</h2>
+
+        <p class="post-date">
+            ${escapeHTML(story.date)}
+        </p>
+
+        <img
+            src="${escapeHTML(story.image)}"
+            alt="${escapeHTML(story.title)}">
+
+        <p style="white-space:pre-line;">
+            ${escapeHTML(story.text)}
+        </p>
+    `;
+
+    document.getElementById("modal").style.display = "block";
+
+}
+
+
+function deleteStory(id) {
+
+    if (!confirm("Czy na pewno chcesz usunąć to opowiadanie?")) {
+        return;
     }
 
+    stories =
+        stories.filter(item => item.id !== id);
 
-    function changeSlide(direction) {
+    localStorage.setItem(
+        "stories",
+        JSON.stringify(stories)
+    );
 
-      currentSlide += direction;
+    displayStories();
 
-      if (currentSlide >= slideItems.length) {
-        currentSlide = 0;
-      }
+}
 
-      if (currentSlide < 0) {
-        currentSlide = slideItems.length - 1;
-      }
 
-      updateSlider();
+/* =========================================
+   PODRÓŻE
+========================================= */
 
+let travels =
+    JSON.parse(localStorage.getItem("travels")) || [];
+
+
+function addTravel() {
+
+    const place =
+        document.getElementById("travelPlace").value;
+
+    const date =
+        document.getElementById("travelDate").value;
+
+    const image =
+        document.getElementById("travelImage").value;
+
+    const photoTitle =
+        document.getElementById("travelPhotoTitle").value;
+
+    const description =
+        document.getElementById("travelDescription").value;
+
+    if (!place || !description) {
+
+        alert("Wpisz miejsce i opis podróży.");
+
+        return;
     }
 
+    const travel = {
 
-    /*
-      Automatyczne przewijanie co 5 sekund.
-    */
+        id: Date.now(),
 
-    setInterval(() => {
+        place: place,
 
-      changeSlide(1);
+        date: date || "Bez daty",
 
-    }, 5000);
+        image:
+            image ||
+            "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80",
 
-  </script>
+        photoTitle:
+            photoTitle || place,
+
+        description: description
+
+    };
+
+    travels.push(travel);
+
+    localStorage.setItem(
+        "travels",
+        JSON.stringify(travels)
+    );
+
+    document.getElementById("travelPlace").value = "";
+    document.getElementById("travelDate").value = "";
+    document.getElementById("travelImage").value = "";
+    document.getElementById("travelPhotoTitle").value = "";
+    document.getElementById("travelDescription").value = "";
+
+    displayTravels();
+
+    alert("Podróż została dodana.");
+
+}
+
+
+/* =========================================
+   WYŚWIETLANIE PODRÓŻY
+========================================= */
+
+function displayTravels() {
+
+    const container =
+        document.getElementById("travelContainer");
+
+    container.innerHTML = "";
+
+    if (travels.length === 0) {
+
+        container.innerHTML = `
+            <div class="post">
+                <div class="post-content">
+                    <h3>Twoja pierwsza podróż</h3>
+                    <p>
+                        Dodaj miejsce, zdjęcie
+                        i opis swojej podróży.
+                    </p>
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+    travels.forEach(travel => {
+
+        const article =
+            document.createElement("article");
+
+        article.className = "post";
+
+        article.innerHTML = `
+
+            <img
+                src="${escapeHTML(travel.image)}"
+                alt="${escapeHTML(travel.photoTitle)}">
+
+            <div class="post-content">
+
+                <div class="post-date">
+                    ${escapeHTML(travel.date)}
+                </div>
+
+                <h3>
+                    📍 ${escapeHTML(travel.place)}
+                </h3>
+
+                <h4>
+                    ${escapeHTML(travel.photoTitle)}
+                </h4>
+
+                <p>
+                    ${escapeHTML(
+                        travel.description.substring(0,150)
+                    )}...
+                </p>
+
+                <span
+                    class="read-more"
+                    onclick="openTravel(${travel.id})">
+                    Zobacz opis →
+                </span>
+
+                <br>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteTravel(${travel.id})">
+                    Usuń
+                </button>
+
+            </div>
+        `;
+
+        container.appendChild(article);
+
+    });
+
+}
+
+
+function openTravel(id) {
+
+    const travel =
+        travels.find(item => item.id === id);
+
+    if (!travel) return;
+
+    document.getElementById("modalContent").innerHTML = `
+
+        <h2>
+            📍 ${escapeHTML(travel.place)}
+        </h2>
+
+        <p class="post-date">
+            ${escapeHTML(travel.date)}
+        </p>
+
+        <img
+            src="${escapeHTML(travel.image)}"
+            alt="${escapeHTML(travel.photoTitle)}">
+
+        <h3>
+            ${escapeHTML(travel.photoTitle)}
+        </h3>
+
+        <p style="white-space:pre-line;">
+            ${escapeHTML(travel.description)}
+        </p>
+
+    `;
+
+    document.getElementById("modal").style.display = "block";
+
+}
+
+
+function deleteTravel(id) {
+
+    if (!confirm("Czy na pewno chcesz usunąć tę podróż?")) {
+        return;
+    }
+
+    travels =
+        travels.filter(item => item.id !== id);
+
+    localStorage.setItem(
+        "travels",
+        JSON.stringify(travels)
+    );
+
+    displayTravels();
+
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+function closeModal() {
+
+    document.getElementById("modal").style.display = "none";
+
+}
+
+window.onclick = function(event) {
+
+    const modal =
+        document.getElementById("modal");
+
+    if (event.target === modal) {
+        closeModal();
+    }
+
+};
+
+
+/* =========================================
+   BEZPIECZNE WYŚWIETLANIE TEKSTU
+========================================= */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+displayStories();
+displayTravels();
+
+</script>
 
 </body>
 </html>
-```
