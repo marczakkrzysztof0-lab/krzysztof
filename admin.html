@@ -1,0 +1,571 @@
+```html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel administratora | Krzysztof</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #090b10;
+    color: white;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.login {
+    max-width: 420px;
+    margin: 100px auto;
+    background: #151820;
+    padding: 35px;
+    border-radius: 20px;
+    border: 1px solid #292e39;
+}
+
+h1 {
+    margin-bottom: 25px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    background: #0d1016;
+    border: 1px solid #333946;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+button {
+    padding: 13px 22px;
+    border: none;
+    border-radius: 30px;
+    background: #b58cff;
+    color: #111;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: .85;
+}
+
+.logout {
+    float: right;
+    background: #49252c;
+    color: white;
+}
+
+.panel {
+    display: none;
+}
+
+.box {
+    background: #151820;
+    border: 1px solid #292e39;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.error {
+    color: #ff7d7d;
+    margin-top: 15px;
+}
+
+.success {
+    color: #8dffae;
+    margin-top: 15px;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 25px;
+    color: #b58cff;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loginScreen" class="login">
+
+    <h1>🔐 Panel administratora</h1>
+
+    <input
+        type="text"
+        id="username"
+        placeholder="Użytkownik">
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Hasło">
+
+    <button onclick="login()">
+        Zaloguj
+    </button>
+
+    <p id="loginMessage"></p>
+
+    <a class="back" href="index.html">
+        ← Wróć na stronę
+    </a>
+
+</div>
+
+
+<div id="adminPanel" class="panel">
+
+<div class="container">
+
+    <button class="logout" onclick="logout()">
+        Wyloguj
+    </button>
+
+    <h1>Panel administratora</h1>
+
+    <p style="color:#aaa;margin-bottom:30px;">
+        Witaj, administratorze. Tutaj możesz dodawać treści.
+    </p>
+
+
+    <!-- LITERATURA -->
+
+    <div class="box">
+
+        <h2>📚 Dodaj opowiadanie</h2>
+
+        <input
+            id="storyTitle"
+            placeholder="Tytuł opowiadania">
+
+        <input
+            id="storyDate"
+            type="date">
+
+        <input
+            id="storyImage"
+            placeholder="Adres zdjęcia">
+
+        <textarea
+            id="storyText"
+            placeholder="Treść opowiadania"></textarea>
+
+        <button onclick="addStory()">
+            Dodaj opowiadanie
+        </button>
+
+        <p id="storyMessage"></p>
+
+    </div>
+
+
+    <!-- PODRÓŻE -->
+
+    <div class="box">
+
+        <h2>✈️ Dodaj podróż</h2>
+
+        <input
+            id="travelPlace"
+            placeholder="Miejsce, np. Rzym">
+
+        <input
+            id="travelDate"
+            type="date">
+
+        <input
+            id="travelImage"
+            placeholder="Adres zdjęcia">
+
+        <input
+            id="travelPhotoTitle"
+            placeholder="Tytuł zdjęcia">
+
+        <textarea
+            id="travelDescription"
+            placeholder="Opis zdjęcia i podróży"></textarea>
+
+        <button onclick="addTravel()">
+            Dodaj podróż
+        </button>
+
+        <p id="travelMessage"></p>
+
+    </div>
+
+
+    <div class="box">
+
+        <h2>📊 Informacje</h2>
+
+        <p>
+            Opowiadania:
+            <strong id="storyCount">0</strong>
+        </p>
+
+        <p>
+            Podróże:
+            <strong id="travelCount">0</strong>
+        </p>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   LOGOWANIE
+========================= */
+
+const ADMIN_USER = "admin";
+const ADMIN_PASSWORD = "Monika01*";
+
+
+function login() {
+
+    const username =
+        document.getElementById("username").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    const message =
+        document.getElementById("loginMessage");
+
+
+    if (
+        username === ADMIN_USER &&
+        password === ADMIN_PASSWORD
+    ) {
+
+        sessionStorage.setItem(
+            "adminLoggedIn",
+            "true"
+        );
+
+        showPanel();
+
+    } else {
+
+        message.className = "error";
+
+        message.textContent =
+            "Nieprawidłowy użytkownik lub hasło.";
+
+    }
+
+}
+
+
+/* =========================
+   PANEL
+========================= */
+
+function showPanel() {
+
+    document.getElementById(
+        "loginScreen"
+    ).style.display = "none";
+
+    document.getElementById(
+        "adminPanel"
+    ).style.display = "block";
+
+    updateStats();
+
+}
+
+
+function logout() {
+
+    sessionStorage.removeItem(
+        "adminLoggedIn"
+    );
+
+    location.reload();
+
+}
+
+
+/* =========================
+   DODAWANIE OPOWIADANIA
+========================= */
+
+function addStory() {
+
+    const title =
+        document.getElementById("storyTitle").value.trim();
+
+    const date =
+        document.getElementById("storyDate").value;
+
+    const image =
+        document.getElementById("storyImage").value.trim();
+
+    const text =
+        document.getElementById("storyText").value.trim();
+
+
+    if (!title || !text) {
+
+        showMessage(
+            "storyMessage",
+            "Podaj tytuł oraz treść.",
+            false
+        );
+
+        return;
+    }
+
+
+    let stories =
+        JSON.parse(
+            localStorage.getItem("stories")
+        ) || [];
+
+
+    stories.push({
+
+        id: Date.now(),
+
+        title: title,
+
+        date: date || "Bez daty",
+
+        image: image,
+
+        text: text
+
+    });
+
+
+    localStorage.setItem(
+        "stories",
+        JSON.stringify(stories)
+    );
+
+
+    document.getElementById(
+        "storyTitle"
+    ).value = "";
+
+    document.getElementById(
+        "storyDate"
+    ).value = "";
+
+    document.getElementById(
+        "storyImage"
+    ).value = "";
+
+    document.getElementById(
+        "storyText"
+    ).value = "";
+
+
+    showMessage(
+        "storyMessage",
+        "✓ Opowiadanie zostało dodane.",
+        true
+    );
+
+    updateStats();
+
+}
+
+
+/* =========================
+   DODAWANIE PODRÓŻY
+========================= */
+
+function addTravel() {
+
+    const place =
+        document.getElementById("travelPlace").value.trim();
+
+    const date =
+        document.getElementById("travelDate").value;
+
+    const image =
+        document.getElementById("travelImage").value.trim();
+
+    const photoTitle =
+        document.getElementById("travelPhotoTitle").value.trim();
+
+    const description =
+        document.getElementById("travelDescription").value.trim();
+
+
+    if (!place || !description) {
+
+        showMessage(
+            "travelMessage",
+            "Podaj miejsce oraz opis.",
+            false
+        );
+
+        return;
+    }
+
+
+    let travels =
+        JSON.parse(
+            localStorage.getItem("travels")
+        ) || [];
+
+
+    travels.push({
+
+        id: Date.now(),
+
+        place: place,
+
+        date: date || "Bez daty",
+
+        image: image,
+
+        photoTitle:
+            photoTitle || place,
+
+        description:
+            description
+
+    });
+
+
+    localStorage.setItem(
+        "travels",
+        JSON.stringify(travels)
+    );
+
+
+    document.getElementById(
+        "travelPlace"
+    ).value = "";
+
+    document.getElementById(
+        "travelDate"
+    ).value = "";
+
+    document.getElementById(
+        "travelImage"
+    ).value = "";
+
+    document.getElementById(
+        "travelPhotoTitle"
+    ).value = "";
+
+    document.getElementById(
+        "travelDescription"
+    ).value = "";
+
+
+    showMessage(
+        "travelMessage",
+        "✓ Podróż została dodana.",
+        true
+    );
+
+    updateStats();
+
+}
+
+
+/* =========================
+   KOMUNIKAT
+========================= */
+
+function showMessage(
+    id,
+    text,
+    success
+) {
+
+    const element =
+        document.getElementById(id);
+
+    element.textContent = text;
+
+    element.className =
+        success ? "success" : "error";
+
+}
+
+
+/* =========================
+   STATYSTYKI
+========================= */
+
+function updateStats() {
+
+    const stories =
+        JSON.parse(
+            localStorage.getItem("stories")
+        ) || [];
+
+    const travels =
+        JSON.parse(
+            localStorage.getItem("travels")
+        ) || [];
+
+
+    document.getElementById(
+        "storyCount"
+    ).textContent = stories.length;
+
+    document.getElementById(
+        "travelCount"
+    ).textContent = travels.length;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+if (
+    sessionStorage.getItem(
+        "adminLoggedIn"
+    ) === "true"
+) {
+
+    showPanel();
+
+}
+
+</script>
+
+</body>
+</html>
+```
