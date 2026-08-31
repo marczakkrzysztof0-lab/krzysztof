@@ -1,17 +1,17 @@
-```html
 <!DOCTYPE html>
 <html lang="pl">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Krzysztof | Moja przestrzeń</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 * {
     margin: 0;
@@ -28,70 +28,99 @@ body {
     background: #090b10;
     color: #f5f5f5;
     line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
 }
 
 
 /* =========================
-   MENU
+   NAWIGACJA
 ========================= */
 
 nav {
-
     position: fixed;
-
     top: 0;
     left: 0;
-
     width: 100%;
-
     z-index: 1000;
 
     padding: 18px 6%;
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
-    background: rgba(9,11,16,.85);
-
+    background: rgba(9,11,16,.92);
     backdrop-filter: blur(15px);
 
-    border-bottom:
-    1px solid rgba(255,255,255,.06);
+    border-bottom: 1px solid rgba(255,255,255,.06);
 }
 
 .logo {
+    color: white;
+    text-decoration: none;
 
-    font-size: 1.3rem;
-
+    font-size: 1.25rem;
     font-weight: bold;
-
     letter-spacing: 2px;
+
+    white-space: nowrap;
 }
 
-nav ul {
+.logo span {
+    color: #b58cff;
+}
 
+.nav-links {
     list-style: none;
 
     display: flex;
+    align-items: center;
 
     gap: 25px;
 }
 
-nav a {
-
+.nav-links a {
     color: white;
-
     text-decoration: none;
+
+    font-size: .95rem;
 
     transition: .3s;
 }
 
-nav a:hover {
-
+.nav-links a:hover {
     color: #b58cff;
+}
+
+
+/* =========================
+   MENU MOBILNE
+========================= */
+
+.menu-button {
+    display: none;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid #333946;
+    border-radius: 10px;
+
+    background: #151820;
+    color: white;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
 }
 
 
@@ -100,75 +129,72 @@ nav a:hover {
 ========================= */
 
 .hero {
-
     min-height: 100vh;
 
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
     text-align: center;
 
-    padding: 120px 20px 70px;
+    padding:
+        120px 20px 80px;
 
     background:
 
-    radial-gradient(
-        circle at 20% 20%,
-        #30204f 0,
-        transparent 35%
-    ),
+        radial-gradient(
+            circle at 20% 20%,
+            #30204f 0,
+            transparent 35%
+        ),
 
-    radial-gradient(
-        circle at 80% 70%,
-        #123b4d 0,
-        transparent 35%
-    ),
+        radial-gradient(
+            circle at 80% 70%,
+            #123b4d 0,
+            transparent 35%
+        ),
 
-    #090b10;
+        #090b10;
 }
 
 .hero-content {
-
+    width: 100%;
     max-width: 900px;
 }
 
 .hero h1 {
+    font-size: clamp(2.7rem, 8vw, 6rem);
 
-    font-size:
-    clamp(3rem, 8vw, 6rem);
-
-    line-height: 1;
+    line-height: 1.05;
 
     margin-bottom: 25px;
 }
 
 .hero h1 span {
-
     color: #b58cff;
 }
 
 .hero p {
-
     color: #c7c7c7;
 
-    font-size: 1.2rem;
+    font-size:
+        clamp(1rem, 2vw, 1.25rem);
+
+    max-width: 700px;
+
+    margin: auto;
 }
 
 .button {
-
     display: inline-block;
 
     margin-top: 30px;
 
-    padding: 13px 27px;
+    padding: 14px 28px;
 
     border-radius: 50px;
 
     background: #b58cff;
-
     color: #111;
 
     text-decoration: none;
@@ -179,13 +205,11 @@ nav a:hover {
 }
 
 .button:hover {
-
-    transform:
-    translateY(-3px);
+    transform: translateY(-3px);
 
     box-shadow:
-    0 10px 30px
-    rgba(181,140,255,.3);
+        0 10px 30px
+        rgba(181,140,255,.3);
 }
 
 
@@ -194,21 +218,22 @@ nav a:hover {
 ========================= */
 
 section {
-
-    padding: 100px 7%;
+    padding:
+        clamp(65px, 10vw, 110px)
+        7%;
 }
 
 .section-title {
-
     text-align: center;
 
-    font-size: 2.6rem;
+    font-size:
+        clamp(2rem, 5vw, 2.8rem);
 
-    margin-bottom: 50px;
+    margin-bottom:
+        clamp(30px, 5vw, 55px);
 }
 
 .section-title span {
-
     color: #b58cff;
 }
 
@@ -218,7 +243,7 @@ section {
 ========================= */
 
 .about {
-
+    width: 100%;
     max-width: 900px;
 
     margin: auto;
@@ -227,10 +252,10 @@ section {
 }
 
 .about p {
-
     color: #bbb;
 
-    font-size: 1.1rem;
+    font-size:
+        clamp(1rem, 2vw, 1.1rem);
 
     margin-bottom: 20px;
 }
@@ -241,12 +266,11 @@ section {
 ========================= */
 
 .interests {
-
     background: #10131a;
 }
 
 .cards {
-
+    width: 100%;
     max-width: 1200px;
 
     margin: auto;
@@ -254,19 +278,17 @@ section {
     display: grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
+        repeat(5, 1fr);
 
-    gap: 25px;
+    gap: 20px;
 }
 
 .card {
-
-    padding: 30px;
+    padding: 28px;
 
     background: #14171e;
 
-    border:
-    1px solid #292e39;
+    border: 1px solid #292e39;
 
     border-radius: 20px;
 
@@ -274,28 +296,27 @@ section {
 }
 
 .card:hover {
-
-    transform:
-    translateY(-7px);
+    transform: translateY(-7px);
 
     border-color: #b58cff;
 }
 
 .icon {
-
-    font-size: 2.8rem;
+    font-size: 2.7rem;
 
     margin-bottom: 15px;
 }
 
 .card h3 {
-
     margin-bottom: 10px;
+
+    font-size: 1.2rem;
 }
 
 .card p {
-
     color: #aaa;
+
+    font-size: .95rem;
 }
 
 
@@ -304,10 +325,11 @@ section {
 ========================= */
 
 .slider {
-
+    width: 100%;
     max-width: 1100px;
 
-    height: 550px;
+    height:
+        clamp(300px, 55vw, 550px);
 
     margin: auto;
 
@@ -316,36 +338,38 @@ section {
     border-radius: 25px;
 
     position: relative;
+
+    background: #14171e;
 }
 
 .slides {
-
     display: flex;
 
+    width: 100%;
     height: 100%;
 
     transition:
-    transform .7s ease;
+        transform .7s ease;
 }
 
 .slide {
-
     min-width: 100%;
+    width: 100%;
+    height: 100%;
 
     position: relative;
 }
 
 .slide img {
+    display: block;
 
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
 }
 
 .slide::after {
-
     content: "";
 
     position: absolute;
@@ -353,55 +377,50 @@ section {
     inset: 0;
 
     background:
-    linear-gradient(
-        to top,
-        rgba(0,0,0,.8),
-        transparent 60%
-    );
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.85),
+            transparent 65%
+        );
 }
 
 .caption {
-
     position: absolute;
 
     z-index: 5;
 
     left: 40px;
+    right: 40px;
 
     bottom: 35px;
 }
 
 .caption h3 {
-
-    font-size: 2rem;
+    font-size:
+        clamp(1.4rem, 4vw, 2rem);
 }
 
 .caption p {
-
     color: #ddd;
 }
 
 .arrow {
-
     position: absolute;
 
     z-index: 10;
 
     top: 50%;
 
-    transform:
-    translateY(-50%);
+    transform: translateY(-50%);
 
     width: 50px;
-
     height: 50px;
 
     border: none;
 
     border-radius: 50%;
 
-    background:
-    rgba(0,0,0,.55);
+    background: rgba(0,0,0,.55);
 
     color: white;
 
@@ -411,19 +430,16 @@ section {
 }
 
 .arrow:hover {
-
     background: #b58cff;
 
     color: #111;
 }
 
 .prev {
-
     left: 20px;
 }
 
 .next {
-
     right: 20px;
 }
 
@@ -433,12 +449,11 @@ section {
 ========================= */
 
 .dark-section {
-
     background: #10131a;
 }
 
 .content-grid {
-
+    width: 100%;
     max-width: 1200px;
 
     margin: auto;
@@ -446,17 +461,17 @@ section {
     display: grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(280px,1fr));
+        repeat(3, 1fr);
 
-    gap: 30px;
+    gap: 25px;
 }
 
 .post {
+    min-width: 0;
 
     background: #151820;
 
-    border:
-    1px solid #292e39;
+    border: 1px solid #292e39;
 
     border-radius: 20px;
 
@@ -466,14 +481,13 @@ section {
 }
 
 .post:hover {
-
-    transform:
-    translateY(-6px);
+    transform: translateY(-6px);
 
     border-color: #b58cff;
 }
 
 .post img {
+    display: block;
 
     width: 100%;
 
@@ -483,19 +497,18 @@ section {
 }
 
 .post-content {
-
     padding: 25px;
 }
 
 .post-content h3 {
-
     margin-bottom: 8px;
 
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+
+    overflow-wrap: anywhere;
 }
 
 .post-date {
-
     color: #b58cff;
 
     font-size: .85rem;
@@ -504,14 +517,14 @@ section {
 }
 
 .post-content p {
-
     color: #aaa;
 
     white-space: pre-line;
+
+    overflow-wrap: anywhere;
 }
 
 .read-more {
-
     display: inline-block;
 
     margin-top: 15px;
@@ -519,6 +532,8 @@ section {
     color: #b58cff;
 
     cursor: pointer;
+
+    font-weight: bold;
 }
 
 
@@ -527,17 +542,17 @@ section {
 ========================= */
 
 .empty {
+    width: 100%;
 
     max-width: 700px;
 
     margin: auto;
 
-    padding: 40px;
+    padding: 40px 25px;
 
     text-align: center;
 
-    border:
-    1px solid #292e39;
+    border: 1px solid #292e39;
 
     border-radius: 20px;
 
@@ -552,22 +567,20 @@ section {
 ========================= */
 
 .contact {
-
     text-align: center;
 
     background:
 
-    radial-gradient(
-        circle at center,
-        #241a39,
-        transparent 55%
-    ),
+        radial-gradient(
+            circle at center,
+            #241a39,
+            transparent 55%
+        ),
 
-    #090b10;
+        #090b10;
 }
 
 .contact p {
-
     color: #aaa;
 }
 
@@ -577,15 +590,15 @@ section {
 ========================= */
 
 footer {
-
     text-align: center;
 
-    padding: 30px;
+    padding: 30px 20px;
 
     color: #777;
 
-    border-top:
-    1px solid #20242d;
+    border-top: 1px solid #20242d;
+
+    font-size: .9rem;
 }
 
 
@@ -594,7 +607,6 @@ footer {
 ========================= */
 
 .modal {
-
     display: none;
 
     position: fixed;
@@ -603,30 +615,32 @@ footer {
 
     z-index: 3000;
 
-    background:
-    rgba(0,0,0,.9);
+    background: rgba(0,0,0,.92);
 
-    padding: 30px;
+    padding: 20px;
 
     overflow-y: auto;
 }
 
 .modal-content {
-
+    width: 100%;
     max-width: 850px;
 
-    margin: 50px auto;
+    margin:
+        30px auto;
 
     background: #151820;
 
     border-radius: 20px;
 
-    padding: 35px;
+    padding:
+        clamp(22px, 5vw, 35px);
 
     position: relative;
 }
 
 .modal-content img {
+    display: block;
 
     width: 100%;
 
@@ -639,63 +653,265 @@ footer {
     margin: 20px 0;
 }
 
-.close {
+.modal-content h2 {
+    padding-right: 35px;
 
+    overflow-wrap: anywhere;
+}
+
+.close {
     position: absolute;
 
-    right: 25px;
-
-    top: 15px;
+    right: 20px;
+    top: 10px;
 
     font-size: 35px;
 
     cursor: pointer;
+
+    color: white;
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* =====================================================
+   TABLET
+===================================================== */
 
-@media(max-width:700px) {
+@media (max-width: 1100px) {
 
-    nav {
-
-        padding: 15px 4%;
+    .cards {
+        grid-template-columns:
+            repeat(3, 1fr);
     }
 
-    nav ul {
+    .content-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
 
-        gap: 10px;
+}
 
-        font-size: .75rem;
+
+/* =====================================================
+   TELEFON
+===================================================== */
+
+@media (max-width: 700px) {
+
+    /* NAV */
+
+    nav {
+        padding: 13px 16px;
     }
 
     .logo {
-
-        font-size: .9rem;
+        font-size: 1rem;
     }
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+
+        top: 70px;
+
+        left: 12px;
+        right: 12px;
+
+        padding: 15px;
+
+        flex-direction: column;
+
+        gap: 0;
+
+        background: #151820;
+
+        border:
+            1px solid #292e39;
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 15px 40px
+            rgba(0,0,0,.4);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+
+        padding: 13px;
+
+        border-radius: 10px;
+
+        font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+        background: #20242d;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 90vh;
+
+        padding:
+            110px 20px 60px;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(2.5rem, 13vw, 4rem);
+    }
+
+    .hero p {
+        font-size: 1rem;
+
+        line-height: 1.8;
+    }
+
+
+    /* SEKCJE */
 
     section {
-
-        padding: 75px 5%;
+        padding:
+            65px 16px;
     }
 
-    .slider {
 
-        height: 400px;
+    /* PASJE */
+
+    .cards {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+    .card {
+        padding: 23px;
+    }
+
+
+    /* SLIDER */
+
+    .slider {
+        height: 350px;
+
+        border-radius: 16px;
     }
 
     .caption {
+        left: 20px;
+        right: 20px;
 
-        left: 25px;
-
-        bottom: 25px;
+        bottom: 22px;
     }
 
-    .caption h3 {
+    .arrow {
+        width: 42px;
+        height: 42px;
 
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+
+    /* WPISY */
+
+    .content-grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .post img {
+        height:
+            min(240px, 60vw);
+    }
+
+    .post-content {
+        padding: 22px;
+    }
+
+
+    /* MODAL */
+
+    .modal {
+        padding: 10px;
+    }
+
+    .modal-content {
+        margin:
+            20px auto;
+
+        border-radius: 15px;
+    }
+
+}
+
+
+/* =====================================================
+   BARDZO MAŁE TELEFONY
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 2.35rem;
+    }
+
+    .slider {
+        height: 300px;
+    }
+
+    .arrow {
+        width: 38px;
+        height: 38px;
+
+        font-size: 1.4rem;
+    }
+
+}
+
+
+/* =====================================================
+   URZĄDZENIA Z OGRANICZONĄ ANIMACJĄ
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .slides {
+        transition: none;
+    }
+
+    .card,
+    .post,
+    .button {
+        transition: none;
     }
 
 }
@@ -708,17 +924,30 @@ footer {
 <body>
 
 
-<!-- =========================
+<!-- =====================================================
      MENU
-========================= -->
+===================================================== -->
 
 <nav>
 
-    <div class="logo">
-        KRZYSZTOF
-    </div>
+    <a href="#top" class="logo">
+        KRZYSZTOF<span>.</span>
+    </a>
 
-    <ul>
+
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Otwórz menu">
+
+        ☰
+
+    </button>
+
+
+    <ul
+        class="nav-links"
+        id="navLinks">
 
         <li>
             <a href="#o-mnie">
@@ -750,31 +979,38 @@ footer {
             </a>
         </li>
 
+        <li>
+            <a href="admin.html">
+                🔐 Admin
+            </a>
+        </li>
+
     </ul>
 
 </nav>
 
 
-<!-- =========================
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
-<header class="hero">
+<header
+    class="hero"
+    id="top">
 
     <div class="hero-content">
 
         <h1>
+
             Cześć, jestem
             <span>Krzysztof.</span>
+
         </h1>
 
         <p>
 
-            Literatura.
-            Podróże.
-            Fotografia.
-            Technologia.
-            Sztuczna inteligencja.
+            Literatura · Podróże · Fotografia ·
+            Technologia · Sztuczna inteligencja
 
         </p>
 
@@ -791,9 +1027,9 @@ footer {
 </header>
 
 
-<!-- =========================
+<!-- =====================================================
      O MNIE
-========================= -->
+===================================================== -->
 
 <section id="o-mnie">
 
@@ -803,6 +1039,7 @@ footer {
         <span>o mnie</span>
 
     </h2>
+
 
     <div class="about">
 
@@ -837,9 +1074,9 @@ footer {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PASJE
-========================= -->
+===================================================== -->
 
 <section class="interests">
 
@@ -856,13 +1093,9 @@ footer {
 
         <div class="card">
 
-            <div class="icon">
-                📚
-            </div>
+            <div class="icon">📚</div>
 
-            <h3>
-                Literatura
-            </h3>
+            <h3>Literatura</h3>
 
             <p>
 
@@ -876,13 +1109,9 @@ footer {
 
         <div class="card">
 
-            <div class="icon">
-                ✈️
-            </div>
+            <div class="icon">✈️</div>
 
-            <h3>
-                Podróże
-            </h3>
+            <h3>Podróże</h3>
 
             <p>
 
@@ -896,13 +1125,9 @@ footer {
 
         <div class="card">
 
-            <div class="icon">
-                📷
-            </div>
+            <div class="icon">📷</div>
 
-            <h3>
-                Fotografia
-            </h3>
+            <h3>Fotografia</h3>
 
             <p>
 
@@ -916,13 +1141,9 @@ footer {
 
         <div class="card">
 
-            <div class="icon">
-                💻
-            </div>
+            <div class="icon">💻</div>
 
-            <h3>
-                Technologia
-            </h3>
+            <h3>Technologia</h3>
 
             <p>
 
@@ -937,13 +1158,9 @@ footer {
 
         <div class="card">
 
-            <div class="icon">
-                🤖
-            </div>
+            <div class="icon">🤖</div>
 
-            <h3>
-                Sztuczna inteligencja
-            </h3>
+            <h3>Sztuczna inteligencja</h3>
 
             <p>
 
@@ -960,9 +1177,9 @@ footer {
 </section>
 
 
-<!-- =========================
-     SLIDER
-========================= -->
+<!-- =====================================================
+     FOTOGRAFIA / SLIDER
+===================================================== -->
 
 <section id="fotografia">
 
@@ -984,14 +1201,12 @@ footer {
             <div class="slide">
 
                 <img
-                src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=85"
-                alt="Góry">
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=85"
+                    alt="Góry">
 
                 <div class="caption">
 
-                    <h3>
-                        Podróże
-                    </h3>
+                    <h3>Podróże</h3>
 
                     <p>
                         Odkrywanie nowych miejsc.
@@ -1005,14 +1220,12 @@ footer {
             <div class="slide">
 
                 <img
-                src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=85"
-                alt="Biblioteka">
+                    src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=85"
+                    alt="Biblioteka">
 
                 <div class="caption">
 
-                    <h3>
-                        Literatura
-                    </h3>
+                    <h3>Literatura</h3>
 
                     <p>
                         Światy ukryte pomiędzy stronami.
@@ -1026,14 +1239,12 @@ footer {
             <div class="slide">
 
                 <img
-                src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=1600&q=85"
-                alt="Aparat">
+                    src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=1600&q=85"
+                    alt="Aparat fotograficzny">
 
                 <div class="caption">
 
-                    <h3>
-                        Fotografia
-                    </h3>
+                    <h3>Fotografia</h3>
 
                     <p>
                         Chwile zatrzymane w kadrze.
@@ -1047,14 +1258,12 @@ footer {
             <div class="slide">
 
                 <img
-                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=85"
-                alt="Technologia">
+                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=85"
+                    alt="Technologia">
 
                 <div class="caption">
 
-                    <h3>
-                        Technologia
-                    </h3>
+                    <h3>Technologia</h3>
 
                     <p>
                         Przyszłość dzieje się teraz.
@@ -1070,7 +1279,8 @@ footer {
 
         <button
             class="arrow prev"
-            onclick="changeSlide(-1)">
+            onclick="changeSlide(-1)"
+            aria-label="Poprzednie zdjęcie">
 
             ‹
 
@@ -1079,7 +1289,8 @@ footer {
 
         <button
             class="arrow next"
-            onclick="changeSlide(1)">
+            onclick="changeSlide(1)"
+            aria-label="Następne zdjęcie">
 
             ›
 
@@ -1090,9 +1301,9 @@ footer {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      LITERATURA
-========================= -->
+===================================================== -->
 
 <section
     id="literatura"
@@ -1115,9 +1326,9 @@ footer {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PODRÓŻE
-========================= -->
+===================================================== -->
 
 <section id="podroze">
 
@@ -1138,9 +1349,9 @@ footer {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      KONTAKT
-========================= -->
+===================================================== -->
 
 <section
     id="kontakt"
@@ -1162,7 +1373,9 @@ footer {
     </p>
 
 
-    <!-- ZMIEŃ E-MAIL -->
+    <!--
+        TU WPISZ SWÓJ E-MAIL
+    -->
 
     <a
         class="button"
@@ -1175,9 +1388,9 @@ footer {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      STOPKA
-========================= -->
+===================================================== -->
 
 <footer>
 
@@ -1187,17 +1400,15 @@ footer {
 </footer>
 
 
-<!-- =========================
+<!-- =====================================================
      MODAL
-========================= -->
+===================================================== -->
 
 <div
     id="modal"
     class="modal">
 
-
     <div class="modal-content">
-
 
         <span
             class="close"
@@ -1208,11 +1419,7 @@ footer {
         </span>
 
 
-        <div
-            id="modalContent">
-
-        </div>
-
+        <div id="modalContent"></div>
 
     </div>
 
@@ -1222,23 +1429,62 @@ footer {
 <script>
 
 
-/* =========================
+/* =====================================================
+   MENU MOBILNE
+===================================================== */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuButton.addEventListener(
+    "click",
+    function() {
+
+        navLinks.classList.toggle("active");
+
+    }
+);
+
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(function(link) {
+
+        link.addEventListener(
+            "click",
+            function() {
+
+                navLinks.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
    SLIDER
-========================= */
+===================================================== */
 
 let currentSlide = 0;
 
 const slides =
-document.getElementById("slides");
+    document.getElementById("slides");
 
 const slideItems =
-document.querySelectorAll(".slide");
+    document.querySelectorAll(".slide");
 
 
 function updateSlider() {
 
     slides.style.transform =
-    `translateX(-${currentSlide * 100}%)`;
+        `translateX(-${currentSlide * 100}%)`;
 
 }
 
@@ -1263,7 +1509,7 @@ function changeSlide(direction) {
     ) {
 
         currentSlide =
-        slideItems.length - 1;
+            slideItems.length - 1;
 
     }
 
@@ -1274,43 +1520,47 @@ function changeSlide(direction) {
 
 
 setInterval(
-    () => changeSlide(1),
+    function() {
+
+        changeSlide(1);
+
+    },
     5000
 );
 
 
-/* =========================
+/* =====================================================
    BEZPIECZNE HTML
-========================= */
+===================================================== */
 
 function escapeHTML(text) {
 
     return String(text || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
 
-/* =========================
+/* =====================================================
    LITERATURA
-========================= */
+===================================================== */
 
 function displayStories() {
 
     const container =
-    document.getElementById(
-        "literatureContainer"
-    );
+        document.getElementById(
+            "literatureContainer"
+        );
 
 
-    let stories =
-    JSON.parse(
-        localStorage.getItem("stories")
-    ) || [];
+    const stories =
+        JSON.parse(
+            localStorage.getItem("stories")
+        ) || [];
 
 
     container.innerHTML = "";
@@ -1344,94 +1594,102 @@ function displayStories() {
 
 
     stories
-    .slice()
-    .reverse()
-    .forEach(story => {
+        .slice()
+        .reverse()
+        .forEach(function(story) {
+
+            const article =
+                document.createElement(
+                    "article"
+                );
 
 
-        const article =
-        document.createElement(
-            "article"
-        );
+            article.className = "post";
 
 
-        article.className =
-        "post";
+            const image =
+                story.image ||
+                "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80";
 
 
-        const image =
-        story.image ||
-        "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1200&q=80";
+            article.innerHTML = `
+
+                <img
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(story.title)}">
 
 
-        article.innerHTML = `
+                <div class="post-content">
 
-            <img
-                src="${escapeHTML(image)}"
-                alt="${escapeHTML(story.title)}">
+                    <div class="post-date">
+
+                        ${escapeHTML(story.date)}
+
+                    </div>
 
 
-            <div class="post-content">
+                    <h3>
 
-                <div class="post-date">
+                        ${escapeHTML(story.title)}
 
-                    ${escapeHTML(story.date)}
+                    </h3>
+
+
+                    <p>
+
+                        ${escapeHTML(
+                            story.text.substring(0,180)
+                        )}
+
+                        ${
+                            story.text.length > 180
+                            ? "..."
+                            : ""
+                        }
+
+                    </p>
+
+
+                    <span
+                        class="read-more"
+                        onclick="openStory(${story.id})">
+
+                        Czytaj całe →
+
+                    </span>
 
                 </div>
 
-
-                <h3>
-
-                    ${escapeHTML(story.title)}
-
-                </h3>
+            `;
 
 
-                <p>
+            container.appendChild(article);
 
-                    ${escapeHTML(
-                        story.text.substring(0,180)
-                    )}${story.text.length > 180 ? "..." : ""}
-
-                </p>
-
-
-                <span
-                    class="read-more"
-                    onclick="openStory(${story.id})">
-
-                    Czytaj całe →
-
-                </span>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(article);
-
-    });
+        });
 
 }
 
 
-/* =========================
-   OTWIERANIE OPOWIADANIA
-========================= */
+/* =====================================================
+   OPOWIADANIE
+===================================================== */
 
 function openStory(id) {
 
     const stories =
-    JSON.parse(
-        localStorage.getItem("stories")
-    ) || [];
+        JSON.parse(
+            localStorage.getItem("stories")
+        ) || [];
 
 
     const story =
-    stories.find(
-        item => item.id === id
-    );
+        stories.find(
+            function(item) {
+
+                return item.id === id;
+
+            }
+        );
 
 
     if (!story) return;
@@ -1458,16 +1716,17 @@ function openStory(id) {
         ${
             story.image
             ?
-            `<img
+            `
+            <img
                 src="${escapeHTML(story.image)}"
-                alt="${escapeHTML(story.title)}">`
+                alt="${escapeHTML(story.title)}">
+            `
             :
             ""
         }
 
 
-        <p
-            style="white-space:pre-line;">
+        <p style="white-space:pre-line;">
 
             ${escapeHTML(story.text)}
 
@@ -1483,22 +1742,22 @@ function openStory(id) {
 }
 
 
-/* =========================
+/* =====================================================
    PODRÓŻE
-========================= */
+===================================================== */
 
 function displayTravels() {
 
     const container =
-    document.getElementById(
-        "travelContainer"
-    );
+        document.getElementById(
+            "travelContainer"
+        );
 
 
-    let travels =
-    JSON.parse(
-        localStorage.getItem("travels")
-    ) || [];
+    const travels =
+        JSON.parse(
+            localStorage.getItem("travels")
+        ) || [];
 
 
     container.innerHTML = "";
@@ -1535,109 +1794,116 @@ function displayTravels() {
 
 
     travels
-    .slice()
-    .reverse()
-    .forEach(travel => {
+        .slice()
+        .reverse()
+        .forEach(function(travel) {
+
+            const article =
+                document.createElement(
+                    "article"
+                );
 
 
-        const article =
-        document.createElement(
-            "article"
-        );
+            article.className = "post";
 
 
-        article.className =
-        "post";
+            const image =
+                travel.image ||
+                "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80";
 
 
-        const image =
-        travel.image ||
-        "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80";
+            article.innerHTML = `
+
+                <img
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(travel.photoTitle)}">
 
 
-        article.innerHTML = `
+                <div class="post-content">
 
-            <img
-                src="${escapeHTML(image)}"
-                alt="${escapeHTML(travel.photoTitle)}">
+                    <div class="post-date">
+
+                        ${escapeHTML(travel.date)}
+
+                    </div>
 
 
-            <div class="post-content">
+                    <h3>
 
-                <div class="post-date">
+                        📍
+                        ${escapeHTML(travel.place)}
 
-                    ${escapeHTML(travel.date)}
+                    </h3>
+
+
+                    <p style="margin-top:8px;">
+
+                        <strong>
+
+                            ${escapeHTML(
+                                travel.photoTitle
+                            )}
+
+                        </strong>
+
+                    </p>
+
+
+                    <p>
+
+                        ${escapeHTML(
+                            travel.description.substring(0,180)
+                        )}
+
+                        ${
+                            travel.description.length > 180
+                            ? "..."
+                            : ""
+                        }
+
+                    </p>
+
+
+                    <span
+                        class="read-more"
+                        onclick="openTravel(${travel.id})">
+
+                        Zobacz podróż →
+
+                    </span>
 
                 </div>
 
-
-                <h3>
-
-                    📍
-                    ${escapeHTML(travel.place)}
-
-                </h3>
+            `;
 
 
-                <p
-                    style="margin-top:8px;">
+            container.appendChild(article);
 
-                    <strong>
-
-                        ${escapeHTML(
-                            travel.photoTitle
-                        )}
-
-                    </strong>
-
-                </p>
-
-
-                <p>
-
-                    ${escapeHTML(
-                        travel.description.substring(0,180)
-                    )}${travel.description.length > 180 ? "..." : ""}
-
-                </p>
-
-
-                <span
-                    class="read-more"
-                    onclick="openTravel(${travel.id})">
-
-                    Zobacz podróż →
-
-                </span>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(article);
-
-    });
+        });
 
 }
 
 
-/* =========================
-   OTWIERANIE PODRÓŻY
-========================= */
+/* =====================================================
+   PODRÓŻ
+===================================================== */
 
 function openTravel(id) {
 
     const travels =
-    JSON.parse(
-        localStorage.getItem("travels")
-    ) || [];
+        JSON.parse(
+            localStorage.getItem("travels")
+        ) || [];
 
 
     const travel =
-    travels.find(
-        item => item.id === id
-    );
+        travels.find(
+            function(item) {
+
+                return item.id === id;
+
+            }
+        );
 
 
     if (!travel) return;
@@ -1665,9 +1931,11 @@ function openTravel(id) {
         ${
             travel.image
             ?
-            `<img
+            `
+            <img
                 src="${escapeHTML(travel.image)}"
-                alt="${escapeHTML(travel.photoTitle)}">`
+                alt="${escapeHTML(travel.photoTitle)}">
+            `
             :
             ""
         }
@@ -1682,8 +1950,9 @@ function openTravel(id) {
 
         <p
             style="
-            white-space:pre-line;
-            margin-top:15px;">
+                white-space:pre-line;
+                margin-top:15px;
+            ">
 
             ${escapeHTML(
                 travel.description
@@ -1701,9 +1970,9 @@ function openTravel(id) {
 }
 
 
-/* =========================
+/* =====================================================
    MODAL
-========================= */
+===================================================== */
 
 function closeModal() {
 
@@ -1714,29 +1983,29 @@ function closeModal() {
 }
 
 
-window.onclick =
-function(event) {
+window.addEventListener(
+    "click",
+    function(event) {
 
-    const modal =
-    document.getElementById(
-        "modal"
-    );
+        const modal =
+            document.getElementById("modal");
 
 
-    if (
-        event.target === modal
-    ) {
+        if (
+            event.target === modal
+        ) {
 
-        closeModal();
+            closeModal();
+
+        }
 
     }
+);
 
-};
 
-
-/* =========================
+/* =====================================================
    START
-========================= */
+===================================================== */
 
 displayStories();
 
@@ -1747,5 +2016,3 @@ displayTravels();
 </body>
 
 </html>
-```
-
